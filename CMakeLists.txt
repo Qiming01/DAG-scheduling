@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.20)
 project(dag-sched CXX)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -fPIC -Wno-deprecated-declarations -Wno-unused-variable")
@@ -23,6 +23,13 @@ message("Python_FOUND:${Python3_FOUND}")
 # message("Python_Development_FOUND:${Python3_Development_FOUND}")
 message("Python_LIBRARIES:${Python3_LIBRARIES}")
 message("Python_INCLUDE_DIRS:${Python3_INCLUDE_DIRS}")
+execute_process(
+    COMMAND ${Python3_EXECUTABLE} -c "import numpy; print(numpy.get_include())"
+    OUTPUT_VARIABLE NUMPY_INCLUDE_DIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+message("NUMPY_INCLUDE_DIR:${NUMPY_INCLUDE_DIR}")
+include_directories(${NUMPY_INCLUDE_DIR})
 
 #-------------------------------------------------------------------------------
 # Submodules

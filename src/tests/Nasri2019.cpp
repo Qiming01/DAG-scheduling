@@ -4,7 +4,7 @@
 #include "io.hpp"
 #include "global/space.hpp"
 
-#include "tbb/task_scheduler_init.h"
+#include <oneapi/tbb/global_control.h>
 
 namespace dagSched{
 
@@ -12,7 +12,10 @@ bool test(std::istream &in,
 	std::istream &dag_in,
 	std::istream &aborts_in, const int m){
 
-    tbb::task_scheduler_init init(8);
+        tbb::global_control c(
+            tbb::global_control::max_allowed_parallelism, 
+            8
+        );
 
     NP::Scheduling_problem<dtime_t> problem{
 		NP::parse_file<dtime_t>(in),
