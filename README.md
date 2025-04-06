@@ -30,8 +30,8 @@ sudo apt-get install graphviz libyaml-cpp-dev python3-matplotlib libtbb-dev libe
 
 安装完依赖后，使用 cmake 构建项目：
 
-```
-git clone https://github.com/mive93/DAG-scheduling 
+```shell
+git clone https://github.com/Qiming01/DAG-scheduling.git
 cd DAG-scheduling
 git submodule update --init --recursive 
 cmake -S . -B build
